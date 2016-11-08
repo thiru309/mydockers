@@ -1,6 +1,8 @@
-FROM debian:latest
+FROM postgres:9.4
 MAINTAINER Marek Płonka
 ENV DEBIAN_FRONTEND noninteractive
+
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
 # dodatkowe pakiety
 RUN apt-get update && \
@@ -28,10 +30,7 @@ ADD scripts/id_rsa.pub /root/.ssh/authorized_keys
 RUN chmod 600 /root/.ssh/authorized_keys
 
 # locales
-RUN echo 'pl_PL.UTF-8 UTF-8' >> /etc/locale.gen
-RUN locale-gen
-RUN echo 'LANG=pl_PL.UTF-8' >> /etc/default/locale
+#RUN echo 'pl_PL.UTF-8 UTF-8' >> /etc/locale.gen
+#RUN locale-gen
+#RUN echo 'LANG=pl_PL.UTF-8' >> /etc/default/locale
 
-ADD scripts/run.sh /run.sh
-RUN chmod 755 /run.sh
-CMD ["/run.sh"]
