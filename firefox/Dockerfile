@@ -23,7 +23,3 @@ USER plona
 ENV HOME /home/plona 
 CMD ["/run.sh"]
 
-#CMD /usr/bin/firefox
-#ADD scripts/run.sh /run.sh
-#RUN chmod 755 /run.sh
-#CMD ["/run.sh"]
