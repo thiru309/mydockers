@@ -35,5 +35,5 @@
     "SavingBrowserHistoryDisabled": true,
     "ShowHomeButton": true,
     "URLBlacklist": ["*"],
-	"URLWhitelist": ["https://www.pekao24.pl"]
+    "URLWhitelist": ["https://www.pekao24.pl"],
 }
