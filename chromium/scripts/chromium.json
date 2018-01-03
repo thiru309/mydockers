@@ -1,0 +1,39 @@
+{
+    "AllowOutdatedPlugins": false,
+    "AlwaysAuthorizePlugins" : false,
+    "BackgroundModeEnabled": false,
+    "BookmarkBarEnabled": false,
+    "CloudPrintSubmitEnabled": false,
+    "DefaultBrowserSettingEnabled": true,
+    "DefaultCookiesSetting": 4,
+    "DefaultGeolocationSetting": 2,
+    "DefaultPluginsSetting": 3,
+    "DefaultPopupsSetting": 1,
+    "DeviceMetricsReportingEnabled": false,
+    "DisablePrintPreview": true,
+    "DnsPrefetchingEnabled": true,
+    "DownloadDirectory": "/home/${user_name}/chromium",
+    //"DefaultDownloadDirectory": "/home/${user_name}/chromium",
+    "ExtensionInstallBlacklist": ["*"],
+    // adblock, Earthy theme
+    "ExtensionInstallForcelist":
+        [
+        "gighmmpiobklfepjocnamgkkbiglidom;https://clients2.google.com/service/update2/crx",
+        "fhflopcljabdklmedgglmkihdnongdaa;https://clients2.google.com/service/update2/crx"
+        ], 
+    "FullscreenAllowed": false,
+    "HomepageIsNewTabPage": false,
+    "HomepageLocation": "https://www.onet.pl",
+    "ImportBookmarks": false,
+    "IncognitoModeAvailability": 0,
+    "MetricsReportingEnabled": false,
+    "PasswordManagerAllowShowPasswords": false,
+    "PasswordManagerEnabled": false,
+    "ProxyMode": "direct",
+    "RestoreOnStartup": 4,
+    "SafeBrowsingEnabled": true,
+    "SavingBrowserHistoryDisabled": true,
+    "ShowHomeButton": true,
+    "URLBlacklist": ["*"],
+	"URLWhitelist": ["https://www.pekao24.pl"]
+}

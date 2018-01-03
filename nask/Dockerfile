@@ -7,7 +7,6 @@ RUN apt-get update && \
     apt-get -y install \
         apt-file \
         bash-completion \
-        chkconfig \
         dialog \
         dnsutils \
         less \
