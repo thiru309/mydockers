@@ -9,7 +9,9 @@ RUN apt-get update && \
         locales
 
 RUN groupadd -g 1000 plona && \
-    useradd -g 1000 -u 1000 -s /bin/bash -m plona
+    useradd -g 1000 -u 1000 -s /bin/bash -m plona && \
+    mkdir /home/plona/chromium && \
+    chown plona:plona /home/plona/chromium
 
 # locales
 RUN echo 'pl_PL.UTF-8 UTF-8' >> /etc/locale.gen
