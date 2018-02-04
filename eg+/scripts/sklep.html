@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Serwis wyłączony z powodu prac konserwacyjnych</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css">
+            body { text-align: center; padding: 10%; font: 20px Helvetica, sans-serif; color: #333; }
+            h1 { font-size: 50px; margin: 0; }
+            article { display: block; text-align: left; max-width: 650px; margin: 0 auto; }
+            a { color: #dc8100; text-decoration: none; }
+            a:hover { color: #333; text-decoration: none; }
+            @media only screen and (max-width : 480px) {
+                h1 { font-size: 40px; }
+            }
+        </style>
+    </head>
+    <body>
+        <article>
+            <h2>Sklep "bazowy".</h2>
+            <p>Na podstawie tego obrazu będą generowane następne.</p>
+            <ul>
+                <li>nie ma ustawionego połączenia z bazą danych</li>
+                <li>wpis server_name w /et/nginx/sites-enabled jest ustawiony w kosmos</li>
+                <li>wpisy certyfikatów w /etc/nginx/sites-enabled pokazują na certyfikaty *.egplusww.pl</li>
+                <li>zasoby vm-media: /media-storage i /shops (wszystkie sklepy - aka workers) są montowane na VM gospodarza dockerów</li>
+            </ul>
+            <h3>Generowanie kolejnego sklepu.</h3>
+            <ul>
+                <li>ustawić połączenie z bazą danych (dbname, user, password) w local_settings.py</li>
+                <li>server_name w /et/nginx/sites-enabled taki, jaki być powinien</li>
+                <li>podmienić pliki certyfikatów</li>
+                <li>zasoby vm-media: /media-storage i /shops/&lt;sklep&gt; wskazać jako katalogi wspólne gospodarza i kontenera</li>
+            </ul>
+        </article>
+    </body>
+</html>
+
