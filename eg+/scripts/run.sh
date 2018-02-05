@@ -20,6 +20,7 @@
 #set -o nounset                              # Treat unset variables as an error
 
 /etc/init.d/ssh start
+/etc/init.d/ntp start
 /etc/init.d/nginx start
 #exec supervisord -n
 bash -c 'sleep infinity'

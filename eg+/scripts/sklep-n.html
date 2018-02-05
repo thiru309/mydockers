@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nowy sklep</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css">
+            body { text-align: center; padding: 10%; font: 16px Helvetica, sans-serif; color: #333; }
+            h1 { font-size: 50px; margin: 0; }
+            article { display: block; text-align: left; max-width: 650px; margin: 0 auto; }
+            a { color: #dc8100; text-decoration: none; }
+            a:hover { color: #333; text-decoration: none; }
+            @media only screen and (max-width : 480px) {
+                h1 { font-size: 40px; }
+            }
+        </style>
+    </head>
+    <body>
+        <article>
+            <h2>Nowy sklep.</h2>
+            <p>Wygenerowany na podstawie obrazu bazowego.</p>
+            <ul>
+                <li>Połączenie z bazą danych musi być ustawione (dbname, user, password) w local_settings.py</li>
+                <li>server_name w /et/nginx/sites-enabled wpisany + ew. aliasy</li>
+                <li>pliki certyfikatów podmienione</li>
+            </ul>
+            <p>zasoby vm-media: /media-storage i /shops/&lt;sklep&gt; wskazać jako katalogi wspólne gospodarza i kontenera (przy inicjalizacji kontenera)</p>
+            <p>to się powinno dać oskryptować (raczej bash niż ansible)</p>
+            <p>największym problemem jest zarządzanie siecią wirtualną gospodarza dockerów.</p? 
+        </article>
+    </body>
+</html>
+
