@@ -4,10 +4,8 @@ set -e
 set -x
 
 # $1 - nazwa kontenera
-# $2 - żądany IP (ostatni człon)
-container_ip=$2
 
 docker start $1
-echo "Na wszelki wypadek czekam 5 sekund ..."
-sleep 5
-/usr/local/sbin/mvlan $1 $2
+echo "Na wszelki wypadek czekam sekundę ..."
+sleep 1
+/usr/local/sbin/mvlan $1

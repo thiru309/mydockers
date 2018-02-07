@@ -6,19 +6,21 @@ set -e
 set +x
 
 # $1 - nazwa kontenera
-# $2 - żądany IP (ostatni człon)
 
+VM_IF="ens2"                            # IF gospodarza dockerów
+VM_GW="192.168.123.1"                   # GW gospodarza dockerów
+
+container_IP=$(pydig.py $1)             # errexit MUST BE SET!
+container_ifn="vif${container_IP##*.}"  # container interface name
 container_pid=$(docker-pid $1)
-container_ifn="vif$2"   # nazwa wirtualnego IF kontenera
+#container_ifn="vif$2"   # nazwa wirtualnego IF kontenera
 
 # ens2 - IF gospodarza dockerów (VM) do którgo linkujemy vifXXX
-# 192.168.123.XXX - IP, pod którym kontener ma być widoczny w podsieci ($2)
+# 192.168.123.XXX - IP, pod którym kontener ma być widoczny w podsieci
 # 192.168.123.1 - brama podsieci
 # powyższe ważne dla mojej podsieci VM (qemu/kvm)
 # docker-pid to skrypt bash-a
 
-container_pid=$(docker-pid $1)
-container_ifn="vif$2"   # container interface name
 
 cmd="ip link add $container_ifn link ens2 type macvlan mode bridge"
 echo $cmd
@@ -36,7 +38,7 @@ cmd="nsenter -t $container_pid -n ip route del default"
 echo $cmd
 eval "$cmd"
 
-cmd="nsenter -t $container_pid -n ip addr add 192.168.123.$2/24 dev $container_ifn"
+cmd="nsenter -t $container_pid -n ip addr add $container_IP/24 dev $container_ifn"
 echo $cmd
 eval "$cmd"
 

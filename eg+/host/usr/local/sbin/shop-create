@@ -4,16 +4,15 @@ set -e
 set -x
 
 # $1 - nazwa kontenera
-# $2 - żądany IP (ostatni człon)
-container_ip=$2
 
 docker run \
     --name=$1 \
     --hostname=$1 \
     --detach \
     --volume=/media-storage:/media-storage \
+    --volume=/my-media/$1:/my-media \
     debian:egp
 
-echo "Na wszelki wypadek czekam 5 sekund ..."
-sleep 5
-/usr/local/sbin/mvlan $1 $2
+echo "Na wszelki wypadek czekam sekundę ..."
+sleep 1
+/usr/local/sbin/mvlan $1

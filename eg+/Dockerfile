@@ -5,23 +5,35 @@ ENV DEBIAN_FRONTEND noninteractive
 # dodatkowe pakiety
 RUN apt-get update && \
     apt-get -y install \
+        apt-file \
+        apt-transport-https \
         bash-completion \
         binutils \
+        deborphan \
         dialog \
         dnsutils \
+        gawk \
         htop \
         less \
         locales \
         lsb-release \
         lsof \
+        man \
         mc \
+        mlocate \
         net-tools \
         netcat-openbsd \
         nginx-full \
         ntp \
         openssh-server \
         openssl \
-        vim
+        rsync \
+        sudo \
+        tcpdump \
+        tmux \
+        tree \
+        vim \
+        wajig
 
 # root & ssh - do usunięcia w przyszłości
 RUN mkdir /var/run/sshd
