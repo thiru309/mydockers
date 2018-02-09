@@ -28,6 +28,7 @@ RUN apt-get update && \
         openssh-server \
         openssl \
         rsync \
+        runit \
         sudo \
         tcpdump \
         tmux \
@@ -50,6 +51,10 @@ RUN echo 'Europe/Warsaw' > /etc/timezone && \
     cd /etc && \
     ln -sf /usr/share/zoneinfo/Europe/Warsaw localtime && \
     dpkg-reconfigure -f noninteractive tzdata
+
+# runit
+RUN mkdir -p /var/lib/runit/supervise
+RUN sed -i.01 -e 's/\/var\/lib\/supervise/\/var\/lib\/runit\/supervise/' /sbin/update-service
 
 # katalogi wspólne (media i my-media)
 RUN mkdir /media-storage && \

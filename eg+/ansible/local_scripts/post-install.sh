@@ -1,9 +1,9 @@
 #!/bin/bash - 
 #===============================================================================
 #
-#          FILE: run.sh
+#          FILE: post-install.sh
 # 
-#         USAGE: ./run.sh 
+#         USAGE: ./post-install.sh 
 # 
 #   DESCRIPTION: 
 # 
@@ -13,11 +13,16 @@
 #         NOTES: ---
 #        AUTHOR: Marek Płonka (marekpl), marek.plonka@nask.pl
 #  ORGANIZATION: NASK
-#       CREATED: 31.10.2016 12:26:01
+#       CREATED: 11/17/2017 09:07:20 AM
 #      REVISION:  ---
 #===============================================================================
 
-#set -o nounset                              # Treat unset variables as an error
+set -o nounset                              # Treat unset variables as an error
+set -o errexit
 
-service ssh start
-exec supervisord -n
+files="templates"
+
+rm -rf $files/home/.vim || true
+rm -f $files/*.tgz
+
+exit 0

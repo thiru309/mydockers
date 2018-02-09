@@ -1,0 +1,70 @@
+- name: Verify local ansible version.
+  hosts: localhost
+  pre_tasks:
+    - name: Verify local ansible version.
+      assert:
+        that: "ansible_version.full | version_compare('2.4', '>=')"
+        msg: "You must update Ansible to at least 2.4 to use this playbook."
+
+- name: standard installation
+  hosts: new
+
+  tasks:
+
+    - name: create users
+      user:
+        name: "{{ item }}"
+        groups: sudo
+        shell: /bin/bash
+        state: present
+      with_items: "{{ users }}"
+      when: item != "root"
+      become: yes
+
+    - name: user's passwords
+      shell: echo "{{ item }}":"{{ item }}" | chpasswd
+      with_items: "{{ users }}"
+      when: item != "root"
+      become: yes
+
+    - name: user's passwords - force change
+      shell: chage -d0 "{{ item }}"
+      with_items: "{{ users }}"
+      when: item != "root"
+      become: yes
+
+    - name: copy files from local to remote
+      copy:
+        src: "{{ item }}"
+        dest: /tmp/
+      with_fileglob:
+        - templates/*.tgz
+
+    - name: unpack user's dot files & utils
+      unarchive:
+        src: /tmp/home.tgz
+        dest: "{{ item.1 }}"
+        owner: "{{ item.0 }}"
+        group: "{{ item.0 }}"
+        remote_src: yes
+      with_together:
+        - "{{ users }}"
+        - "{{ homes }}"
+      become: yes
+
+    - name: fix users homes permisions
+      file:
+        path: "{{ item.1 }}"
+        mode: 0700
+        owner: "{{ item.0 }}"
+        group: "{{ item.0 }}"
+      with_together:
+        - "{{ users }}"
+        - "{{ homes }}"
+      become: yes
+
+    - name: root ssh login must be forbidden
+      shell: sed -i.orig -e 's/^PermitRootLogin\s.*\|^#.*PermitRootLogin\s.*/PermitRootLogin no/' /etc/ssh/sshd_config
+      become: yes
+    - debug: msg="ssh daemon on {{ inventory_hostname }} should be restarted" verbosity=0
+
