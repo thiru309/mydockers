@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install \
         chromium \
         chromium-l10n \
-        vim \
+        vim-tiny \
         locales
 
 # user and exchange dir
